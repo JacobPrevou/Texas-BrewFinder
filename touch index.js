@@ -2,31 +2,9 @@
 //make a "select" object (default behavior is to provide a dropdown list); 
 //the "select" object should have an id field/should be a form element
 
+fetchBreweries()
 
-async function fetchBreweries() {
-    const response = await fetch("https://api.openbrewerydb.org/breweries?by_state=texas");
-    const breweries = await response.json();
-    
-    return breweries;
-}
-
-function loadCities(breweries) {
-    const selectList = promise.all(breweries).then(values => {
-        console.log(values);
-        return selectList.city
-    })
-}
-
-//function renderCity(json) {
-//     document.querySelector('input')
-//      json.filter(brewery => {
-//         brewery.city;
-//      })
-//      const ul = document.createElement('ul')
-//      ul.innerHTML = `<ul>${brewery.city}</ul>`
-//      select.appendChild(ul)
-//}
-
+//Decide what happens if fetchBreweries() returns an error
 document.addEventListener('DOMContentLoaded', async () => {
     let breweries = [];
 
@@ -36,16 +14,28 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error(error);
     }
 
-    const select = breweries.filter(obj => {
-        console.log(obj.city);
-    })
     console.log(breweries);
 });
 
+//Fetch brewery data from API and get a promise
+async function fetchBreweries() {
+    const response = await fetch("https://api.openbrewerydb.org/breweries?by_state=texas");
+    const breweries = await response.json();
+    
+    return breweries;
+}
+
+//Filter cities 
+async function renderCities() {
+    let data = await fetchBreweries();
+    data.filter(brewery => {
+        console.log(brewery.city);
+    });
+}
+//Call renderCities()
+renderCities();
 
 
-
-//const selection = document.getElementById('input')
 
 
 
