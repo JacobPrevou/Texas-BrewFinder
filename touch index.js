@@ -5,12 +5,28 @@
 
 function fetchBreweries() {
     fetch("https://api.openbrewerydb.org/breweries?by_state=texas")
-    .then(res => res.json())
-    .then(json => console.log(json));
+    .then(res => {
+        res.json()
+    })
+    .then(json => {
+        renderCity(json);
+    });
 }
 
+function renderCity(json) {
+    const select = document.querySelector('input')
+    json.map(brewery => {
+      const ul = document.createElement('ul')
+      ul.innerHTML = `<ul>${brewery.city}</ul>`
+      select.appendChild(ul)
+    })
+}
+
+document.addEventListener('Change', fetchBreweries())
 
 
+
+//const selection = document.getElementById('input')
 
 
 
