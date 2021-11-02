@@ -2,7 +2,7 @@
 //make a "select" object (default behavior is to provide a dropdown list); 
 //the "select" object should have an id field/should be a form element
 
-fetchBreweries()
+
 
 //Decide what happens if fetchBreweries() returns an error
 document.addEventListener('DOMContentLoaded', async () => {
@@ -20,69 +20,36 @@ document.addEventListener('DOMContentLoaded', async () => {
 //Fetch brewery data from API and get a promise
 async function fetchBreweries() {
     const response = await fetch("https://api.openbrewerydb.org/breweries?by_state=texas");
-    const breweries = await response.json();
-    
-    return breweries;
+    const data = await response.json();
+    console.log(data); 
+    var select = document.getElementById('input')
+    data.forEach(brewery => {
+        //Sort cities alphabetically
+        function sortArray(x, y){
+            if (x.city < y.city) {return -1;}
+            if (x.city > y.city) {return 1;}
+            return 0;
+        }
+        var sorted = data.sort(sortArray);
+        console.log(sorted);
+
+        var clean = sorted.filter((sorted, index, self) =>
+        index === self.findIndex((t) => (t.save === sorted.city)))
+
+        console.log(clean);
+        
+        // let uniqueChars = [...new Set(data.city)];
+        // console.log(uniqueChars);
+        
+        const option = document.createElement('option')
+        option.innerHTML = `<option>${brewery.city}</option>`
+        select.appendChild(option)
+    })
+
 }
-
-//Filter cities 
-async function renderCities() {
-    let data = await fetchBreweries();
-    const select = document.getElementById('input')
-    const list = document.createElement('ul')
-    const option = document.createElement('OPTION')
-    
-    list.innerHTML = data.map(brewery => {
-        return brewery.city;
-        //option.innerHTML = brewery.city;
-
-    });
-    option.appendChild(list);
-    select.appendChild(option)
-    //option.innerHTML = cityList;
-    //list.appendChild(option);
-    //option.innerHTML = `<option>${cityList}</option>`
-    //list.appendChild(option)
-}
-//Call renderCities()
-renderCities();
-
-//function renderCity(json) {
-//     document.querySelector('input')
-//      json.filter(brewery => {
-//         brewery.city;
-//      })
-//      const ul = document.createElement('ul')
-//      ul.innerHTML = `<ul>${brewery.city}</ul>`
-//      select.appendChild(ul)
-//}
-
-    // document.addEventListener('DOMContentLoaded', async () => {
-    //     let breweries = [];
-
-    //     try {
-    //         breweries = await fetchBreweries()
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-
-    //     console.log(breweries);
-    // });
-
-// document.addEventListener('DOMContentLoaded', async () => {
-//     let breweries = [];
-//     const select = breweries.filter(obj => {
-//         console.log(obj.city);
-//         const list = document.getElementById('input')
-//         const ul = document.createElement('ul')
-//         ul.innerHTML = `<ul>${obj.city}</ul>`
-//         list.appendChild(ul)
-//     })
-// })
+fetchBreweries()
 
 
-
-//const selection = document.getElementById('input')
 
 
 
