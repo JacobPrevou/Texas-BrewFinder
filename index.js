@@ -24,6 +24,9 @@ function fetchBreweries() {
     .then(res => res.json())
     .then(breweries => {
         console.log(breweries)
+        filteredBreweries = breweries
     })
 };
 fetchBreweries();
+
+let filteredBreweries = [];
