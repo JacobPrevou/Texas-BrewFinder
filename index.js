@@ -23,7 +23,7 @@ function fetchBreweries() {
     fetch("https://api.openbrewerydb.org/breweries?by_state=texas")
     .then(res => res.json())
     .then(breweries => {
-        console.log(breweries)
+        displayBreweries(breweries)
         filteredBreweries = breweries
     })
 };
