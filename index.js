@@ -61,3 +61,8 @@ input.addEventListener('input', event => {
     });
     displayBreweries(searchResult);
 });
+
+//Create a "like" button for each brewery
+const btn = document.createElement('button');
+document.body.append(btn);
+btn.className = "like";
