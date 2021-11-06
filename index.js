@@ -1,0 +1,19 @@
+//Make a search bar element and assign it to a variable to reference
+
+//The container
+const container = document.createElement('div')
+document.body.append(container);
+container.className = "container";
+
+//Searchbar wrapper
+const searchWrapper = document.createElement('div');
+container.appendChild(searchWrapper);
+searchWrapper.id = "searchBar";
+
+//Create input box for searchBar
+const input = document.createElement('input');
+searchWrapper.appendChild(input);
+input.type = "text";
+input.id = "searchBar";
+input.placeholder = "Type in a Texas city y'all!"
+
