@@ -41,10 +41,14 @@ const displayBreweries = (breweries) => {
     const htmlString = breweries
         .map((brewery) => {
             return `
-            <li class="character">
+            <li class="brewery">
                 <h2>${brewery.name}</h2>
+                <p>Street: ${brewery.street}</p>
+                <p>City: ${brewery.city}</p>
+                <p>Zipcode: ${brewery.postal_code}
+            </li>
         `;
         })
         .join('');
-    profiles.innerHTML = htmlString;
+    breweryProfiles.innerHTML = htmlString;
 };
