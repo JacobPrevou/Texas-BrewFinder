@@ -8,7 +8,7 @@ container.className = "container";
 //Searchbar wrapper
 const searchWrapper = document.createElement('div');
 container.appendChild(searchWrapper);
-searchWrapper.id = "searchBar";
+searchWrapper.id = "searchWrapper";
 
 //Create input box for searchBar
 const input = document.createElement('input');
@@ -52,3 +52,12 @@ const displayBreweries = (breweries) => {
         .join('');
     breweryProfiles.innerHTML = htmlString;
 };
+
+//Create event listener for search inputs that lets you search for breweries by city
+input.addEventListener('input', event => {
+    const searchStr = event.target.value.toLowerCase();
+    let searchResult = filteredBreweries.filter(brewery => {
+        return (brewery.city.toLowerCase().includes(searchStr));
+    });
+    displayBreweries(searchResult);
+});
