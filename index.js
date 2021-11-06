@@ -34,4 +34,17 @@ let filteredBreweries = [];
 //Create a list element for the brewery "profiles"
 const breweryProfiles = document.createElement('ul');
 container.append(breweryProfiles);
+breweryProfiles.id = "profiles";
 
+//Write a function that will map out the API data/designate the info you want for each brewery profile
+const displayBreweries = (breweries) => {
+    const htmlString = breweries
+        .map((brewery) => {
+            return `
+            <li class="character">
+                <h2>${brewery.name}</h2>
+        `;
+        })
+        .join('');
+    profiles.innerHTML = htmlString;
+};
