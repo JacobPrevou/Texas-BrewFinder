@@ -17,3 +17,13 @@ input.type = "text";
 input.id = "searchBar";
 input.placeholder = "Type in a Texas city y'all!"
 
+//Ok you made the searchbar! Now connect with the API
+
+function fetchBreweries() {
+    fetch("https://api.openbrewerydb.org/breweries?by_state=texas")
+    .then(res => res.json())
+    .then(breweries => {
+        console.log(breweries)
+    })
+};
+fetchBreweries();
