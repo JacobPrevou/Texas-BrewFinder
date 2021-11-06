@@ -30,3 +30,8 @@ function fetchBreweries() {
 fetchBreweries();
 
 let filteredBreweries = [];
+
+//Create a list element for the brewery "profiles"
+const breweryProfiles = document.createElement('ul');
+container.append(breweryProfiles);
+
