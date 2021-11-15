@@ -73,8 +73,28 @@ let filteredBreweries = [];
 fetchBreweries();
 
 
+container.addEventListener("click", e => {
+    if (e.target.className == "site") {
+        profiles.style.display = "none";
+        console.log(e.target);
+    }
+})
+
+// $(".thumbnail").click(function() {
+//     // Hides all images.
+//     $(".image").hide();
+ 
+//     // Shows appropriate one.
+//     var imageId = $(this).data("imageId"); // Fetches the value of the data-imageId attribute.
+//     $(".image[data-imageId="+imageId+"]").show();
+//  });
+
+
+
+
+
+
 function countLikes(){
-    // const ul = document.querySelector("ul")
     profiles.addEventListener("click", e => {
         e.preventDefault();
         if (e.target.className == "count") {
@@ -84,3 +104,6 @@ function countLikes(){
 };
 countLikes();
 
+const div = document.createElement('div');
+document.body.prepend(div);
+div.className = "bg-img";
