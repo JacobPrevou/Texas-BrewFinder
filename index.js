@@ -1,6 +1,6 @@
-//Make a search bar element and assign it to a variable to reference
+//
 
-//The container
+//Create a div container for your search elements
 const container = document.createElement('div')
 document.body.append(container);
 container.className = "container";
@@ -19,40 +19,41 @@ input.id = "searchBar";
 input.placeholder = "Type in a Texas city y'all!"
 
 
-searchBar.addEventListener('input', event => {
-    event.preventDefault()
-    const searchString = event.target.value.toLowerCase();
-    let searchResult = filteredBreweries.filter(brewery => {
-        return (
-            brewery.city.toLowerCase().includes(searchString) 
-        );
-    });
-  displayBreweries(searchResult)
-});
-
-
-
-//Ok you made the searchbar! Now connect with the API
-function fetchBreweries() {
-    fetch("https://api.openbrewerydb.org/breweries?by_state=texas")
-    .then(res => res.json())
-    .then(breweries => {
-        displayBreweries(breweries)
-        filteredBreweries = breweries
-    })
-};
-
-
-
 //Create a list element for the brewery "profiles"
 const profiles = document.createElement('ul');
 container.append(profiles);
 profiles.id = "profiles";
 
 
-//Write a function that will map out the API data/designate the info you want for each brewery profile
+//Add an input event listener to search bar; search by city
+searchBar.addEventListener('input', e => {
+    e.preventDefault()
+    const searchString = e.target.value.toLowerCase();
+    let result = breweriesArr.filter((brewery) => {
+        return (
+            brewery.city.toLowerCase().includes(searchString)
+        );
+    });
+  displayBreweries(result);
+});
+
+
+//Ok you made the searchbar! Now access the API
+function fetchBreweries() {
+    fetch("https://api.openbrewerydb.org/breweries?by_state=texas")
+    .then(res => res.json())
+    .then(breweries => {
+        displayBreweries(breweries);
+        breweriesArr = breweries
+       
+    })
+    .catch(error => console.log('error is', error));
+};
+
+let breweriesArr = [];
+
 const displayBreweries = (breweries) => {
-    const htmlString = breweries.map((brewery) => {
+    const site = breweries.map((brewery) => {
         return `
         <li class="site">
             <h2>${brewery.name}</h2>
@@ -60,50 +61,30 @@ const displayBreweries = (breweries) => {
             <p>City: ${brewery.city}</p>
             <p>Zipcode: ${brewery.postal_code}</p>
             <button class="likes">
-                <i class="fas fa-beer"></i>
-                <span class="count">0</span>
+                <i class="fas fa-beer"> Cheers!</i>
             </button>
         </li>`;
     }).join('');
-    profiles.innerHTML = htmlString
+    profiles.innerHTML = site
 };
-
-
-let filteredBreweries = [];
+//Call fetchBreweries
 fetchBreweries();
 
 
-container.addEventListener("click", e => {
-    if (e.target.className == "site") {
-        profiles.style.display = "none";
-        console.log(e.target);
+//Add an alert when you "like" a brewery ("Cheers!")
+profiles.addEventListener("click",function(e) {
+    if(e.target && e.target.className == "fas fa-beer") {
+        alert(" Cheers!");
     }
-})
+});
 
-// $(".thumbnail").click(function() {
-//     // Hides all images.
-//     $(".image").hide();
- 
-//     // Shows appropriate one.
-//     var imageId = $(this).data("imageId"); // Fetches the value of the data-imageId attribute.
-//     $(".image[data-imageId="+imageId+"]").show();
-//  });
-
-
-
-
-
-
-function countLikes(){
-    profiles.addEventListener("click", e => {
-        e.preventDefault();
-        if (e.target.className == "count") {
-            return(e.target.textContent++);
-        };
-    });
-};
-countLikes();
-
-const div = document.createElement('div');
-document.body.prepend(div);
-div.className = "bg-img";
+//Create function to count the number of likes a brewery has
+// function countLikes(){
+//     profiles.addEventListener("click", e => {
+//         e.preventDefault();
+//         if (e.target.className == "fas fa-beer") {
+//             return(e.target.style.color = "red");
+//         };
+//     });
+// };
+// countLikes();
