@@ -34,7 +34,7 @@ searchBar.addEventListener('input', e => {
             brewery.city.toLowerCase().includes(searchString)
         );
     });
-  displayBreweries(result);
+  loadBreweries(result);
 });
 
 
@@ -43,7 +43,7 @@ function fetchBreweries() {
     fetch("https://api.openbrewerydb.org/breweries?by_state=texas")
     .then(res => res.json())
     .then(breweries => {
-        displayBreweries(breweries);
+        loadBreweries(breweries);
         breweriesArr = breweries
        
     })
@@ -52,7 +52,7 @@ function fetchBreweries() {
 
 let breweriesArr = [];
 
-const displayBreweries = (breweries) => {
+const loadBreweries = (breweries) => {
     const site = breweries.map((brewery) => {
         return `
         <li class="site">
