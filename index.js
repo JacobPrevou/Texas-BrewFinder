@@ -78,13 +78,13 @@ profiles.addEventListener("click",function(e) {
     }
 });
 
-//Create function to count the number of likes a brewery has
-// function countLikes(){
-//     profiles.addEventListener("click", e => {
-//         e.preventDefault();
-//         if (e.target.className == "fas fa-beer") {
-//             return(e.target.style.color = "red");
-//         };
-//     });
-// };
-// countLikes();
+//Show "likes" by changing the color of the cheers button icon
+function showLikes(){
+    profiles.addEventListener("click", e => {
+        e.preventDefault();
+        if (e.target.className == "fas fa-beer") {
+            return(e.target.style.color = "red");
+        };
+    });
+};
+showLikes();
