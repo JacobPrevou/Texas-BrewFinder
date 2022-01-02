@@ -8,11 +8,11 @@ Link: [Open Brewery DB](https://www.openbrewerydb.org/)
 ## How It Works
 Using Texas BrewFinder is easy: simply enter the name of a Texas city in the search field. 
 
-![Search field](images.brewfinder/txBrewFinder2.jpg)
+[Search field](https://github.com/JacobPrevou/Texas-BrewFinder/raw/main/images.brewfinder/txBrewFinder2.jpg)
 ***
 A card displaying a name and address is then generated for each facility with a matching location. 
 
-![Search results ex.](images.brewfinder/searchResults.jpg)
+[Search results ex.](https://github.com/JacobPrevou/Texas-BrewFinder/raw/main/images.brewfinder/searchResults.jpg)
 ***
 
 ## License
