@@ -6,5 +6,6 @@ Per the Open Brewery DB wesbite, Open Brewery DB is "a free dataset and API with
 Link: [Open Brewery DB](https://www.openbrewerydb.org/)
 
 ## How It Works
-Using Texas BrewFinder is easy: simply enter the name of a Texas city in the searchbar. A profile displaying a name and address is then generated for each facility located in that city. 
-![alt text](images.brewfinder/txBrewFinder2.jpg)
+Using Texas BrewFinder is easy: simply enter the name of a Texas city in the search field. ![Searchbar](images.brewfinder/txBrewFinder2.jpg)
+A a list of profiles displaying a name and address is then generated for each facility with a matching location. ![Search Results](images.brewfinder/searchResults.jpg)
+
