@@ -23,11 +23,6 @@ const profiles = document.createElement('ul');
 container.append(profiles);
 profiles.id = "profiles";
 
-const btn = document.createElement('button');
-btn.class = 'button';
-btn.id = 'search';
-btn.textContent = 'Search';
-searchWrapper.append(btn);
 
 function fetchBreweries() {
     fetch("https://api.openbrewerydb.org/breweries?by_state=texas")
@@ -61,26 +56,16 @@ const loadBreweries = (breweries) => {
 };
 
 
-// searchBar.addEventListener('input', e => {
-//     const searchString = e.target.value.toLowerCase();
-//     let result = breweriesArr.filter((brewery) => {
-//         return (
-//             brewery.city.toLowerCase().includes(searchString)
-//         );
-//     });
-//   loadBreweries(result);
-// });
-btn.addEventListener('click', getResults);
-
-function getResults() {
-    const searchString = input.value
+searchBar.addEventListener('input', e => {
+    const searchString = e.target.value.toLowerCase();
     let result = breweriesArr.filter((brewery) => {
         return (
-            brewery.city.includes(searchString)
+            brewery.city.toLowerCase().includes(searchString)
         );
     });
-    loadBreweries(result);
-};
+  loadBreweries(result);
+});
+
 
 
 
