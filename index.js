@@ -23,7 +23,11 @@ const profiles = document.createElement('ul');
 container.append(profiles);
 profiles.id = "profiles";
 
-
+const btn = document.createElement('button');
+btn.class = 'button';
+btn.id = 'search';
+btn.textContent = 'Search';
+searchWrapper.append(btn);
 
 function fetchBreweries() {
     fetch("https://api.openbrewerydb.org/breweries?by_state=texas")
@@ -37,6 +41,8 @@ function fetchBreweries() {
 };
 
 let breweriesArr = [];
+
+
 
 const loadBreweries = (breweries) => {
     const site = breweries.map((brewery) => {
@@ -54,18 +60,33 @@ const loadBreweries = (breweries) => {
     profiles.innerHTML = site
 };
 
-searchBar.addEventListener('input', e => {
-    e.preventDefault()
-    const searchString = e.target.value.toLowerCase();
+
+// searchBar.addEventListener('input', e => {
+//     const searchString = e.target.value.toLowerCase();
+//     let result = breweriesArr.filter((brewery) => {
+//         return (
+//             brewery.city.toLowerCase().includes(searchString)
+//         );
+//     });
+//   loadBreweries(result);
+// });
+btn.addEventListener('click', getResults);
+
+function getResults() {
+    const searchString = input.value
     let result = breweriesArr.filter((brewery) => {
         return (
-            brewery.city.toLowerCase().includes(searchString)
+            brewery.city.includes(searchString)
         );
     });
-  loadBreweries(result);
-});
+    loadBreweries(result);
+};
+
+
 
 fetchBreweries();
+
+
 
 
 profiles.addEventListener("click",function(e) {
