@@ -1,5 +1,9 @@
 //
 
+document.addEventListener("DOMContentLoaded", function () {
+    alert("DOM Loaded");
+});
+
 
 const container = document.createElement('div')
 document.body.append(container);
@@ -66,7 +70,9 @@ searchBar.addEventListener('input', e => {
   loadBreweries(result);
 });
 
-
+// document.addEventListener("DOMContentLoaded", function () {
+//     console.log(profiles);
+// });
 
 
 fetchBreweries();
