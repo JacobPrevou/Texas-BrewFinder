@@ -1,7 +1,14 @@
 //
 
 document.addEventListener("DOMContentLoaded", function () {
-    alert("DOM Loaded");
+    function showLikes(){
+        profiles.addEventListener("click", e => {
+            if (e.target.className == "fas fa-beer") {
+                return(e.target.style.color = "red");
+            };
+        });
+    };
+    showLikes();
 });
 
 
@@ -13,7 +20,6 @@ container.className = "container";
 const searchWrapper = document.createElement('div');
 container.appendChild(searchWrapper);
 searchWrapper.id = "searchWrapper";
-
 
 
 const input = document.createElement('input');
@@ -87,11 +93,11 @@ profiles.addEventListener("click",function(e) {
 });
 
 
-function showLikes(){
-    profiles.addEventListener("click", e => {
-        if (e.target.className == "fas fa-beer") {
-            return(e.target.style.color = "red");
-        };
-    });
-};
-showLikes();
+// function showLikes(){
+//     profiles.addEventListener("click", e => {
+//         if (e.target.className == "fas fa-beer") {
+//             return(e.target.style.color = "red");
+//         };
+//     });
+// };
+// showLikes();
